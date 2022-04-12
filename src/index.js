@@ -1,4 +1,5 @@
 const express        = require("express");
+const { stringReplace } = require('string-replace-middleware');
 const cors           = require("cors");
 const bodyParser     = require('body-parser');
 const fs             = require("fs");
@@ -36,6 +37,12 @@ const handleXmlRequest = function(err, req, res, next) {
 }
 
 const app = express();
+
+// Make abs URLs relative
+app.use(stringReplace({
+    'href="\/': 'href="',
+    'src="\/': 'src="'
+}));
 
 app.use(cors({
     origin: true,

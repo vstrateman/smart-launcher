@@ -40,6 +40,7 @@
     "replaceall": "^0.1.6",
     "replacestream": "^4.0.3",
     "request": "^2.65.0",
+    "string-replace-middleware": "^1.0.2",
     "ursa": "^0.9.4"
   },
   "devDependencies": {
