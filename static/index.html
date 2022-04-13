@@ -734,7 +734,7 @@
 
                     var pickerSettings = {
                         server: {
-                            url : getBaseUrl() + "/fhir",
+                            url : ENV['FHIR_SERVER_' + getFhirVersion().toUpperCase()],
                             type: fhirVersion
                         },
                         hideTagSelector: !ENV.DISABLE_SANDBOXES
@@ -782,7 +782,7 @@
 
                 $("#provider").picker({
                     url: function() {
-                        return getBaseUrl() + "/fhir/Practitioner";
+                        return ENV['FHIR_SERVER_' + getFhirVersion().toUpperCase()] + "/Practitioner";
                     },
                     onChange: function() {
                         handleFormChange();
@@ -904,7 +904,7 @@
                 var baseUrl            = getBaseUrl();
                 var launchType         = getLaunchType();
                 var urlParams          = getSim();
-                var openUrl            = baseUrl + "/fhir";
+                var openUrl            = ENV['FHIR_SERVER_' + getFhirVersion().toUpperCase()];
                 var launchData         = Lib.base64UrlEncode(JSON.stringify(codec.encode(urlParams)));
                 var standaloneUrl      = baseUrl + "/sim/" + launchData + "/fhir";
                 var appLaunchUrl       = getLaunchUrl();
