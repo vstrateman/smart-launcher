@@ -6,8 +6,9 @@ const config = require("./config");
  */
 function getRequestBaseURL(req) {
     const host = req.headers["x-forwarded-host"] || req.headers.host;
+    const path = req.headers["x-forwarded-prefix"] || req.headers.path || "";
     const protocol = req.headers["x-forwarded-proto"] || req.protocol || "http";
-    return protocol + "://" + host;
+    return protocol + "://" + host + path;
 }
 
 module.exports = (req, res) => {
