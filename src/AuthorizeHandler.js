@@ -112,9 +112,19 @@ class AuthorizeHandler extends SMARTHandler {
         if (!this.sim.launch_ehr && !config.includeEncounterContextInStandaloneLaunch) {
             return false;
         }
-    
-        // Only if launch or launch/encounter scope is requested
-        return this.scope.has("launch") || this.scope.has("launch/encounter");
+        
+        // Encounter selector should handle searching for encounters
+        if (this.scope.has("launch")) {
+            return false;
+        }
+
+        // Smart-Launcher should search for most recent encounter
+        if (this.scope.has("launch/encounter")) {
+            return true;
+        }
+
+        // DEFAULT
+        return false;
     }
 
     /**
